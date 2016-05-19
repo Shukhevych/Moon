@@ -1,4 +1,4 @@
-package org.sokolas.wsserver;
+package moon.frontserver;
 
 import com.google.inject.Guice;
 import com.google.inject.Injector;

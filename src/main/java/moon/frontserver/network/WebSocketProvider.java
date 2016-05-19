@@ -1,8 +1,8 @@
-package org.sokolas.wsserver.network;
+package moon.frontserver.network;
 
 import com.google.inject.Inject;
 import com.google.inject.Provider;
-import org.sokolas.wsserver.model.PlayersRegistry;
+import moon.frontserver.model.PlayersRegistry;
 
 public class WebSocketProvider implements Provider<GWebSocket>{
     @Inject

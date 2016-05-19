@@ -1,6 +1,6 @@
-package org.sokolas.wsserver.model;
+package moon.frontserver.model;
 
-import org.sokolas.wsserver.connection.ConnectionAdapter;
+import moon.frontserver.connection.ConnectionAdapter;
 
 import java.util.Map;
 import java.util.Set;

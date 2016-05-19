@@ -1,18 +1,18 @@
-package org.sokolas.wsserver;
+package moon.frontserver;
 
 import com.google.inject.AbstractModule;
 import com.google.inject.Inject;
 import com.google.inject.Injector;
 import com.google.inject.Provides;
 import com.google.inject.name.Names;
+import moon.frontserver.cluster.ClusterEventListener;
+import moon.frontserver.network.WebSocketProvider;
 import org.eclipse.jetty.server.Handler;
 import org.eclipse.jetty.websocket.server.WebSocketHandler;
 import org.eclipse.jetty.websocket.servlet.WebSocketServletFactory;
-import org.sokolas.wsserver.cluster.ClusterEventListener;
-import org.sokolas.wsserver.cluster.ZookeeperEventListener;
-import org.sokolas.wsserver.model.PlayersRegistry;
-import org.sokolas.wsserver.network.GWebSocket;
-import org.sokolas.wsserver.network.WebSocketProvider;
+import moon.frontserver.cluster.ZookeeperEventListener;
+import moon.frontserver.model.PlayersRegistry;
+import moon.frontserver.network.GWebSocket;
 
 public class AppModule extends AbstractModule {
 

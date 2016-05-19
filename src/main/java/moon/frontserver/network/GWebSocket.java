@@ -1,12 +1,12 @@
-package org.sokolas.wsserver.network;
+package moon.frontserver.network;
 
+import moon.frontserver.connection.WebSocketConnectionAdapter;
+import moon.frontserver.model.PlayersRegistry;
 import org.eclipse.jetty.websocket.api.Session;
 import org.eclipse.jetty.websocket.api.annotations.OnWebSocketClose;
 import org.eclipse.jetty.websocket.api.annotations.OnWebSocketConnect;
 import org.eclipse.jetty.websocket.api.annotations.OnWebSocketMessage;
 import org.eclipse.jetty.websocket.api.annotations.WebSocket;
-import org.sokolas.wsserver.model.PlayersRegistry;
-import org.sokolas.wsserver.connection.WebSocketConnectionAdapter;
 
 import java.io.IOException;
 

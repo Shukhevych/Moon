@@ -1,4 +1,4 @@
-package org.sokolas.wsserver.model;
+package moon.frontserver.model;
 
 public class Player {
     private Long id;

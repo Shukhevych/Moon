@@ -1,7 +1,7 @@
-package org.sokolas.wsserver.connection;
+package moon.frontserver.connection;
 
 import org.eclipse.jetty.websocket.api.Session;
-import org.sokolas.wsserver.model.PlayersRegistry;
+import moon.frontserver.model.PlayersRegistry;
 
 import java.io.IOException;
 

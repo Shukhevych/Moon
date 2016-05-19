@@ -1,4 +1,4 @@
-package org.sokolas.wsserver.cluster;
+package moon.frontserver.cluster;
 
 /**
  * Для работы с кластером через ZooKeeper

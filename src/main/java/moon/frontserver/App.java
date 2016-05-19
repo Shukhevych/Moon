@@ -1,11 +1,11 @@
-package org.sokolas.wsserver;
+package moon.frontserver;
 
 import com.google.inject.Inject;
 import com.google.inject.name.Named;
+import moon.frontserver.model.PlayersRegistry;
 import org.eclipse.jetty.server.Handler;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.server.handler.ContextHandler;
-import org.sokolas.wsserver.model.PlayersRegistry;
 
 public class App {
     @Inject

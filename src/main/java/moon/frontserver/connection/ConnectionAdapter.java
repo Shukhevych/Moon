@@ -1,4 +1,4 @@
-package org.sokolas.wsserver.connection;
+package moon.frontserver.connection;
 
 import java.io.IOException;
 
