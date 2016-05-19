@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head><meta charset="utf8" /></head>
+<script>
+	var socket = new WebSocket("ws://localhost:8081/game/");
+	socket.onopen = function () {
+  		console.log("Соединение открылось");
+	};
+	socket.onclose = function () {
+  		console.log ("Соединение закрылось");
+	};
+	socket.onmessage = function (event) {
+  		console.log ("Пришло сообщение с содержанием:", event.data);
+	};
+</script>
+</html>
