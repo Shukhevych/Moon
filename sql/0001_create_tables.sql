@@ -69,3 +69,20 @@ CREATE INDEX fki_decks
   ON decks
   USING btree
   (player_id);
+  
+-- Table: wallet
+
+-- DROP TABLE wallet;
+
+CREATE TABLE wallet
+(
+  player_id bigint NOT NULL,
+  credits bigint,
+  CONSTRAINT pk_wallet PRIMARY KEY (player_id),
+  CONSTRAINT fk_wallet FOREIGN KEY (player_id)
+      REFERENCES players (id) MATCH SIMPLE
+      ON UPDATE NO ACTION ON DELETE NO ACTION
+)
+WITH (
+  OIDS=FALSE
+);
