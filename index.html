@@ -1,16 +1,39 @@
 <!DOCTYPE html>
 <html>
-<head><meta charset="utf8" /></head>
+<head>
+	<meta charset="utf8"/>
+</head>
 <script>
 	var socket = new WebSocket("ws://localhost:8081/game/");
 	socket.onopen = function () {
-  		console.log("Соединение открылось");
+		logMessage("connection opened");
+		console.log("Соединение открылось");
 	};
 	socket.onclose = function () {
-  		console.log ("Соединение закрылось");
+		logMessage("connection closed");
+		console.log("Соединение закрылось");
 	};
 	socket.onmessage = function (event) {
-  		console.log ("Пришло сообщение с содержанием:", event.data);
+		logMessage("message received: " + event.data);
+		console.log("Пришло сообщение с содержанием:", event.data);
 	};
+
+	function logMessage(message) {
+		var textarea = document.getElementById("console");
+		textarea.value += "\n" + message;
+		textarea.scrollTop = textarea.scrollHeight;
+	}
+
+	function sendMessage(e, message) {
+		if (e.keyCode == 13) {
+			socket.send(message);
+			return false;
+		}
+	}
 </script>
+	<body>
+		<textarea cols="80" rows="20" id="console"></textarea>
+		<br/>
+		<textarea cols="80" rows="5" onkeypress="return sendMessage(event, this.value);"></textarea>
+	</body>
 </html>
