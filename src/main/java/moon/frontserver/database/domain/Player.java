@@ -1,11 +1,12 @@
-package moon.frontserver.model;
+package moon.frontserver.database.domain;
 
 import javax.persistence.*;
 
 @Entity
 @Table(name = "players")
 public class Player {
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String name;

@@ -1,8 +1,8 @@
 package moon.frontserver.connection;
 
 import moon.frontserver.controller.GameController;
-import org.eclipse.jetty.websocket.api.Session;
 import moon.frontserver.model.PlayersRegistry;
+import org.eclipse.jetty.websocket.api.Session;
 
 import java.io.IOException;
 
@@ -20,8 +20,7 @@ public class WebSocketConnectionAdapter implements ConnectionAdapter {
      */
     PlayersRegistry registry;
 
-    public WebSocketConnectionAdapter(Session session, PlayersRegistry registry, GameController controller)
-    {
+    public WebSocketConnectionAdapter(Session session, PlayersRegistry registry, GameController controller) {
         this.session = session;
         this.registry = registry;
         this.controller = controller;
@@ -46,11 +45,10 @@ public class WebSocketConnectionAdapter implements ConnectionAdapter {
     }
 
     @Override
-    public void onMessage(String message)
-    {
+    public void onMessage(String message) {
         System.out.println("Message: " + message);
         // перешлем сообщение всем, кто подключен
-        for (Long key: registry.keySet()) {
+        for (Long key : registry.keySet()) {
             try {
                 registry.getConnection(key).send(Long.toString(id) + ": " + message);
             } catch (IOException e) {

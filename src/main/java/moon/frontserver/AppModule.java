@@ -3,14 +3,15 @@ package moon.frontserver;
 import com.google.inject.*;
 import com.google.inject.name.Names;
 import moon.frontserver.cluster.ClusterEventListener;
+import moon.frontserver.cluster.ZookeeperEventListener;
 import moon.frontserver.controller.GameController;
+import moon.frontserver.model.PlayersRegistry;
+import moon.frontserver.network.GWebSocket;
 import org.eclipse.jetty.server.Handler;
 import org.eclipse.jetty.websocket.server.WebSocketHandler;
 import org.eclipse.jetty.websocket.servlet.WebSocketServletFactory;
-import moon.frontserver.cluster.ZookeeperEventListener;
-import moon.frontserver.model.PlayersRegistry;
-import moon.frontserver.network.GWebSocket;
 
+import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
@@ -28,9 +29,16 @@ public class AppModule extends AbstractModule {
         bind(ClusterEventListener.class).to(ZookeeperEventListener.class);
     }
 
-    @Provides @Singleton
+    @Provides
+    @Singleton
     EntityManagerFactory entityManagerFactory() {
         return Persistence.createEntityManagerFactory("moon.front-server");
+    }
+
+    @Provides
+    @Singleton
+    EntityManager entityManager() {
+        return entityManagerFactory().createEntityManager();
     }
 
     @Provides

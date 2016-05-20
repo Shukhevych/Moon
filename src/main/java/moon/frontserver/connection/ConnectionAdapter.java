@@ -7,7 +7,10 @@ import java.io.IOException;
  */
 public interface ConnectionAdapter {
     void onConnect();
+
     void onClose();
+
     void onMessage(String message);
+
     void send(String message) throws IOException;
 }
