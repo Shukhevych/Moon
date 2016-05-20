@@ -14,9 +14,16 @@ import moon.frontserver.cluster.ZookeeperEventListener;
 import moon.frontserver.model.PlayersRegistry;
 import moon.frontserver.network.GWebSocket;
 
+import javax.persistence.Entity;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+
 public class AppModule extends AbstractModule {
 
-    PlayersRegistry playersRegistry;
+    private PlayersRegistry playersRegistry;
+
+    private EntityManagerFactory emFactory;
 
     @Override
     protected void configure() {
@@ -32,6 +39,14 @@ public class AppModule extends AbstractModule {
             playersRegistry = new PlayersRegistry();
         }
         return playersRegistry;
+    }
+
+    @Provides
+    EntityManager getEntityManager() {
+        if (emFactory == null) {
+            emFactory = Persistence.createEntityManagerFactory("moon.front-server");
+        }
+        return emFactory.createEntityManager();
     }
 
     @Provides
