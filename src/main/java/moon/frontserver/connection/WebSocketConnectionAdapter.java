@@ -1,5 +1,6 @@
 package moon.frontserver.connection;
 
+import moon.frontserver.controller.GameController;
 import org.eclipse.jetty.websocket.api.Session;
 import moon.frontserver.model.PlayersRegistry;
 
@@ -10,18 +11,20 @@ import java.io.IOException;
  */
 public class WebSocketConnectionAdapter implements ConnectionAdapter {
 
-    Session session;
-    Long id;
+    private Session session;
+    private Long id;
+    private GameController controller;
 
     /**
      * Реестр активных соединений. Не надо изменять его отсюда, лучше, чтобы добавлял/удалял тот класс, который создал этот адаптер
      */
     PlayersRegistry registry;
 
-    public WebSocketConnectionAdapter(Session session, PlayersRegistry registry)
+    public WebSocketConnectionAdapter(Session session, PlayersRegistry registry, GameController controller)
     {
         this.session = session;
         this.registry = registry;
+        this.controller = controller;
     }
 
     public Long getId() {
@@ -54,6 +57,8 @@ public class WebSocketConnectionAdapter implements ConnectionAdapter {
                 e.printStackTrace();
             }
         }
+        // отправим в контроллер
+        controller.onCommand(this, message);
     }
 
     @Override

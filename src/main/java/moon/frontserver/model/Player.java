@@ -1,10 +1,19 @@
 package moon.frontserver.model;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "players")
 public class Player {
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private String name;
     private String email;
     private String password;
+
+    public Player() {
+    }
 
     public Long getId() {
         return id;

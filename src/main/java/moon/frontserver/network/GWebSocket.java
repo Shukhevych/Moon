@@ -1,6 +1,8 @@
 package moon.frontserver.network;
 
+import com.google.inject.Inject;
 import moon.frontserver.connection.WebSocketConnectionAdapter;
+import moon.frontserver.controller.GameController;
 import moon.frontserver.model.PlayersRegistry;
 import org.eclipse.jetty.websocket.api.Session;
 import org.eclipse.jetty.websocket.api.annotations.OnWebSocketClose;
@@ -16,7 +18,11 @@ import java.io.IOException;
 @WebSocket
 public class GWebSocket {
 
+    @Inject
     private PlayersRegistry registry;
+
+    @Inject
+    private GameController controller;
 
     private Long connectionId;
 
@@ -25,14 +31,10 @@ public class GWebSocket {
      */
     private WebSocketConnectionAdapter adapter;
 
-    public GWebSocket(PlayersRegistry registry) {
-        this.registry = registry;
-    }
-
     @OnWebSocketConnect
     public void onConnect(Session session) {
         System.out.println("Connected: " + session.getRemote());
-        adapter = new WebSocketConnectionAdapter(session, registry);
+        adapter = new WebSocketConnectionAdapter(session, registry, controller);
         long id = registry.addConnection(adapter);
         adapter.setId(id);
         try {
