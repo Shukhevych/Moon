@@ -11,7 +11,6 @@ import org.eclipse.jetty.server.Handler;
 import org.eclipse.jetty.websocket.server.WebSocketHandler;
 import org.eclipse.jetty.websocket.servlet.WebSocketServletFactory;
 
-import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
@@ -35,11 +34,6 @@ public class AppModule extends AbstractModule {
         return Persistence.createEntityManagerFactory("moon.front-server");
     }
 
-    @Provides
-    @Singleton
-    EntityManager entityManager() {
-        return entityManagerFactory().createEntityManager();
-    }
 
     @Provides
     @Inject
