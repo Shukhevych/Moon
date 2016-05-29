@@ -17,4 +17,12 @@ public class PlayerDao {
         em.close();
         return player;
     }
+
+    public Player loadPlayerByEmail(String email) {
+        EntityManager em = entityManagerFactory.createEntityManager();
+        Player player = em.createQuery(
+                "SELECT u from Player u WHERE u.email= :email", Player.class).
+                setParameter("email", email).getSingleResult();
+        return player;
+    }
 }
